@@ -1,0 +1,771 @@
+@charset 'UTF-8';
+
+/*リセット*/
+html
+{
+    font-size: .25mm;  /*remで級数指定できる*/
+
+    orphans: 1;
+    widows: 1;
+    /*line-height: 0.25mm;*/
+}
+
+*
+{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*外部フォント*/
+@font-face
+{
+    font-family: inconsolata;
+
+    src: url('inconsolata.otf');
+}
+@font-face
+{
+    font-family: impact;
+
+    src: url('impact.ttf');
+}
+@font-face
+{
+    font-family: verdanai;
+
+    src: url('VerdanaItalic.ttf');
+}
+
+/*ページレイアウト*/
+@page
+{
+    /*margin-top: 21mm;
+    margin-bottom: 26mm;*/
+    /*counter-increment: nonble;*/
+
+    size: 210mm 297mm;
+}
+/*柱のための設定*/
+.page-header { 
+    display: none; /* 通常は表示しないよう */ 
+    /*縦書き設定*/
+    -epub-writing-mode: vertical-rl;
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+    /*その他の書式*/
+    font-size: 24rem;
+    text-align: left;
+} 
+.chapter-header{
+    display: none; /* 通常は表示しないよう */ 
+    font-size: 32rem;
+    font-family: impact;
+    text-align: center;
+    color: #fff;
+}
+
+/*ページテンプレート*/
+@-epubx-page-template { 
+    .page-header { 
+        display: block; 
+        -epubx-flow-into: page-header; 
+        -epubx-flow-options: static exclusive last; 
+    } 
+    .chapter-header{
+        display: block; 
+        -epubx-flow-into: chapter-header; 
+        -epubx-flow-options: static exclusive last;         
+    }
+
+    @-epubx-page-master { 
+        -epubx-utilization: 0.1; 
+        /*本文領域*/
+        @-epubx-partition content-area { 
+            -epubx-flow-from: body; 
+            position: absolute;
+            top: 21mm;
+            left: 24.5mm;
+            width: 161mm;
+            height: 250mm;
+        } 
+        /*ノンブル（柱より前に書く必要あり？）*/
+        @-epubx-partition{
+            content: counter(page);
+            position: absolute;
+            text-align: center;
+            width: 210mm;
+            height: 10mm;
+            left: 0;
+            bottom: 8mm;
+            /*background: #f00;*/
+            font-size: 16rem;
+        }
+
+        /*柱領域*/
+        @-epubx-partition header-area { 
+            -epubx-enabled: -epubx-expr( page-number % 2 == 0 );
+            -epubx-flow-from: page-header; 
+            position: absolute;
+            width: 10mm;
+            padding: 0;
+            padding-top: 70mm;
+            padding-left: 5mm;
+            padding-right: 1mm;
+            height: 297mm;
+            left: 0;
+            background: #ccc;
+        } 
+        @-epubx-partition header-chapter { 
+            -epubx-enabled: -epubx-expr( page-number % 2 == 0 );
+            -epubx-flow-from: chapter-header; 
+            position: absolute;
+            width: 14mm;
+            height: 16mm;
+            padding: 0;
+            padding-top: 10mm;
+            padding-left: 2mm;
+            left: 0;
+            top: 40mm;
+            background: #888;
+        } 
+        @-epubx-partition header-area { 
+            -epubx-enabled: -epubx-expr( page-number % 2 == 1 );
+            -epubx-flow-from: page-header; 
+            position: absolute;
+            width: 10mm;
+            padding: 0;
+            padding-top: 70mm;
+            padding-right: 5mm;
+            padding-left: 1mm;
+            height: 297mm;
+            right: 0;
+            background: #ccc;
+        } 
+        @-epubx-partition header-chapter { 
+            -epubx-enabled: -epubx-expr( page-number % 2 == 1 );
+            -epubx-flow-from: chapter-header; 
+            position: absolute;
+            width: 14mm;
+            height: 16mm;
+            padding: 0;
+            padding-top: 10mm;
+            padding-right: 2mm;
+            right: 0;
+            top: 40mm;
+            background: #888;
+        } 
+
+    } 
+} 
+
+
+body
+{
+    font-family: '游ゴシック', YuGothic, 'ヒラギノ角ゴ Pro','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,Osaka,'ＭＳ Ｐゴシック',MS-PGothic,sans-serif;
+    font-size: 14rem;
+
+    width: 161mm;/*210-左右マージン*/
+    margin: auto;
+    /*background: #FFFAFA;*/
+
+    counter-reset: header1;
+}
+
+/*カバーページ*/
+.coverpage
+{
+    position: relative;
+
+    overflow: visible;
+
+    padding-top: 45mm;
+
+    color: #222;
+    background: #fff;
+    /*background: url(shadow2.svg);
+    background-size: 150%;*/
+
+    font-feature-settings: 'pkna' 1;
+    page-break-after: always;
+}
+.coverpage .booktitle
+{
+    margin-top: 5mm;
+    padding-top: 8mm;
+    padding-bottom: 9mm;
+    margin-bottom: 5mm;
+
+    border: solid 1.5mm #888;
+    border-right: 0;
+    border-left: 0;
+}
+.coverpage .corpname
+{
+    font-size: 24rem;
+    font-weight: bold;
+}
+.coverpage h1
+{
+    font-size: 48rem;
+
+    margin-bottom: 2mm;
+}
+.coverpage .subtitle
+{
+    font-size: 32rem;
+    font-weight: bold;
+    text-align: right;
+}
+.coverpage .version
+{
+    font-size: 32rem;
+    font-weight: bold;
+    margin-bottom: 8mm;
+
+/*    position: absolute;
+    bottom: 12mm;
+*/
+    text-align: right;
+}
+
+/*目次ページ*/
+.toc
+{
+    padding-top: 10mm;
+
+    page-break-after: always;
+}
+.toc h1
+{
+    font-size: 24rem;
+    line-height: 10mm;
+
+    margin-bottom: 8mm;
+    padding: 1mm;
+    padding-left: 10mm;
+
+    text-align: center;
+    letter-spacing: 10mm;
+
+    color: #fff;
+    background: #888;
+}
+.toc a
+{
+    color: #000;
+}
+.toclist
+{
+    list-style-type: none;
+
+    counter-reset: tocheader;
+}
+.toclist-item::before
+{
+    font-family: impact;
+
+    padding-right: 4mm;
+
+    content: counters(tocheader, '-')' ';
+    counter-increment: tocheader;
+
+    color: #888;
+}
+.toclist-link::after
+{
+    font-family: verdanai;
+
+    content: '……123';
+    content: '……' target-counter(attr(href, url), page);
+}
+.toclist-link
+{
+    text-decoration: none;
+}
+.toclist-item
+{
+    font-size: 20rem;
+    line-height: 7mm;
+
+    position: relative;
+}
+/*階層設定*/
+ol ol .toclist-item
+{
+    font-size: 18rem;
+
+    margin-left: 2em;
+}
+ol ol ol .toclist-item
+{
+    font-size: 14rem;
+}
+/*大見出しのスタイル変更*/
+.toc > .toclist
+{
+    margin-left: 0;
+}
+.toc > .toclist > .toclist-item
+{
+    font-weight: bold;
+
+    margin-top: 6mm;
+    margin-bottom: 2mm;
+
+    border: solid .5mm #888;
+}
+.toc > .toclist > .toclist-item::before
+{
+    font-weight: normal;
+
+    display: inline-block;
+
+    margin-right: 2mm;
+    padding-right: 2.5mm;
+    padding-left: 2.5mm;
+
+    content: counter(tocheader);
+    text-align: center;
+
+    color: #fff;
+    background: #888;
+}
+.toc > .toclist > .toclist-item > .toclist-link::after
+{
+    font-family: verdanai;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    padding-right: 2mm;
+
+    content: '123';
+    content: target-counter(attr(href, url), page);
+}
+
+/*強制改ページ*/
+.pagebreak
+{
+    border: none;
+
+    page-break-after: always;
+}
+/*一行空き*/
+.blankline
+{
+    height: 6mm;
+
+    border: none;
+}
+
+/*本文*/
+p
+{
+    font-size: 14rem;
+    line-height: 6mm;
+
+    text-align: justify;
+}
+
+/*節見出し*/
+.secheader
+{
+    /*overflow: auto;*/
+
+    /*width: 170mm;*/
+    height: 24mm;
+    margin-bottom: 6mm;
+    padding-top: 4mm;
+    padding-left: 8mm;
+
+    counter-reset: header2;
+
+    background: #ddd;
+    color: #666;
+
+    page-break-before: always;
+    page-break-after: avoid;
+
+}
+.header1
+{
+    font-size: 42rem;
+    font-weight: bold;
+
+    position: relative;
+
+    padding-left: 10mm;
+
+    font-feature-settings: 'pkna' 1;
+}
+/*節番号*/
+.header1::before
+{
+    font-family: impact;
+    /*font-size: 48rem;*/
+
+    content: counter(header1);
+    counter-increment: header1;
+
+    display: block;
+    width: 14mm;
+    background: #888;
+    height: 24mm;
+    color: #fff;
+    line-height: 24mm;
+    text-align: center;
+
+    position: absolute;
+    left: -8mm;
+    top: -4mm;
+
+}
+
+/*中見出し*/
+.header2
+{
+    font-size: 24rem;
+
+    clear: both;
+
+    margin-bottom: 4mm;
+    padding: 2mm 3mm;
+
+    counter-reset: header3;
+
+    border-bottom: solid .5mm #888;
+    border-left: solid 3mm #888;
+
+    page-break-after: avoid;
+}
+/*ページ頭に見出しが来るときのための小技*/
+.wiki-content + section .header2{
+    margin-top: 12mm;        
+}
+
+.header2::before
+{
+    font-family: impact;
+
+    margin-right: 4mm;
+
+    content: counter(header1)'-'counter(header2);
+    counter-increment: header2;
+    letter-spacing: .5mm;
+
+    color: #888;
+}
+
+/*小見出し*/
+.header3
+{
+    font-size: 18rem;
+    line-height: 6mm;
+
+    margin-bottom: 2mm;
+
+    page-break-after: avoid;
+}
+/*ページ頭に見出しが来るときのための小技*/
+.wiki-content + section .header3{
+    margin-top: 6mm;
+}
+
+.header3::before
+{
+    font-family: impact;
+
+    margin-right: 2mm;
+
+    content: counter(header1)'-'counter(header2)'-'counter(header3);
+    counter-increment: header3;
+    letter-spacing: .5mm;
+
+    color: #888;
+}
+
+/*箇条書き（手順）*/
+ul,
+ol
+{
+    line-height: 6mm;
+
+    margin-bottom: 6mm;
+    margin-left: 4mm;
+
+    counter-reset: steplist;
+}
+section ol
+{
+    margin-left: 10mm;
+}
+section ol > li
+{
+    font-size: 16rem;
+    /*font-weight: bold;*/
+
+    position: relative;
+
+    margin-top: 4mm;
+
+    list-style-type: none;
+}
+/*角番号*/
+section ol > li::before
+{
+    font-family: impact;
+    font-size: 20rem;
+    font-weight: normal;
+
+    position: absolute;
+    top: -1mm;
+    left: -10mm;
+
+    display: inline-block;
+
+    min-width: 4mm;
+    padding: .5mm 1.5mm .5mm 1.5mm;
+
+    content: counter(steplist)' ';
+    counter-increment: steplist;
+    text-align: center;
+
+    color: #fff;
+    background: #888;
+}
+/*olの入れ子で色を変える*/
+section ol ol li::before
+{
+    color: #fff;
+    background: #b0d7e8;
+}
+section ol ol ol li::before
+{
+    color: #888;
+    border: solid .1mm #888;
+    background: #fff;
+}
+section ol ol ol ol li::before
+{
+    color: #888;
+    border: solid .1mm #888;
+    border-radius: 50%;
+    background: #fff;
+}
+
+/*▶記号*/
+section ol ul
+{
+    margin-top: 2mm;
+    margin-left: 0mm;
+
+    list-style-position: inside;
+    list-style-type: none;
+    list-style-image: url('listicon.svg');
+}
+/*箇条書き内の画像の位置調整*/
+section ol > li > img
+{
+    margin-left: 0;
+
+    border: solid .15mm #aaa;
+}
+section ul > li > img
+{
+    margin-left: 5mm;
+
+    border: solid .15mm #aaa;
+}
+
+/*小小見出し*/
+h4
+{
+    font-size: 16rem;
+
+    margin-top: 6mm;
+    margin-bottom: 2mm;
+}
+h4::before
+{
+    margin-right: 2mm;
+
+    content: '('counter(header3)')';
+    counter-increment: header3;
+
+    color: #888;
+}
+/*小小見出しのカウンターリセット*/
+header2
+{
+    counter-reset: header3;
+}
+
+/*小小小見出し*/
+h5
+{
+    font-size: 16rem;
+
+    margin-top: 6mm;
+}
+header2 ul
+{
+    margin-left: 4mm;
+}
+
+/*図版 h6*/
+h6
+{
+    margin-top: 3mm;
+    margin-bottom: 3mm;
+}
+h6 img
+{
+    margin-right: 3mm;
+}
+img
+{
+    margin-top: 3mm;
+    margin-bottom: 3mm;
+    max-width: 100%;
+    max-height: 200mm;
+}
+/*メモ*/
+.tmemo,
+.tnote
+{
+    display: flex;
+    flex-direction: row;
+    /*border-radius: 4mm;*/
+
+    margin-top: 6mm;
+    padding: 1.5mm;
+
+    border: solid .5mm #888;
+    background: #fff;
+    background: url(shadow2.svg);
+    background-size: 150%;
+
+    align-items: stretch;
+    align-content: flex-start;
+}
+.tmemo h5,
+.tnote h5
+{
+    font-size: 13rem;
+
+    width: 5em;
+    /*border-radius: 4mm 0mm 0mm 4mm;*/
+    margin: -1.6mm;
+    margin-right: 2mm;
+    padding-top: 1.5mm;
+
+    text-align: center;
+
+    color: white;
+    background: #888;
+
+    flex-shrink: 0;
+    flex-grow: 0;
+    flex-basis: 5em;
+}
+/*注意は背景を赤に変更*/
+.tnote h5
+{
+    border: solid .8mm #f66;
+    background: #f66;
+}
+.tmemo ul
+{
+    margin-left: 0;
+
+    list-style-type: none;
+}
+
+hr{
+    border: none;
+    border-top: dashed 0.15mm #888;
+    margin-top: 2mm;
+    margin-bottom: 2mm;
+}
+
+/*表組み*/
+table
+{
+    margin-top: 3mm;
+
+    border-collapse: collapse;
+}
+th,
+td
+{
+    font-size: 13rem;
+    line-height: 4mm;
+
+    padding: 1.5mm 2mm 1.5mm 2mm;
+
+    border: solid .15mm #888;
+}
+th
+{
+    min-width: 36mm;
+
+    color: #fefefe;
+    border: solid .1mm #fefefe;
+    border-top: solid .15mm #888;
+    background: #888;
+}
+td img
+{
+    margin: 0;
+}
+/*.confluenceTd
+{
+    background: #fff;
+    background: url(shadow2.svg);
+    background-size: 300mm;
+}*/
+th:first-child
+{
+    border-left: solid .15mm #888;
+}
+th:last-child
+{
+    border-right: solid .15mm #888;
+}
+/*tr{
+  background: #EEE;
+}
+tr:nth-child(even){
+  background: #DDD;
+}*/
+
+/*ラベル*/
+.label_warning
+{
+    border: solid .5mm #f66;
+    /*background: #f66;*/
+}
+.label_prohibit
+{
+    border: solid .5mm #fb0;
+    /*background: #ff0;*/
+}
+.label_indicate
+{
+    border: solid .5mm #0af;
+    /*background: #0af;*/
+}
+
+/*編集コメント*/
+.hen
+{
+    font-size: 12rem;
+    line-height: 5mm;
+
+    margin-top: 3mm;
+
+    color: #f00;
+    background: #ff0;
+}
