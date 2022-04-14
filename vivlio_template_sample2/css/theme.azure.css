@@ -695,7 +695,6 @@
  */
 
 #page-content {
-  margin-left: 280px;
   padding: 140px 60px 20px 60px;
   /*border-bottom: 10px solid #E0E0E0;*/
   transition: margin-left 0.5s;
