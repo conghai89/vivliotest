@@ -1,0 +1,546 @@
+@charset "utf-8";
+
+/* print style sheet for vivliostyle */
+
+@page {
+  /* bleed: 3mm;
+  marks: crop cross; */
+  size: A4;
+  margin-top: 30mm;
+  margin-right: 30mm;
+  margin-bottom: 15mm;
+  margin-left: 20mm;
+}
+
+@page :left {
+  margin-right: 20mm;
+  margin-left: 30mm;
+
+  @top-left {
+    margin-right: -23mm;
+    margin-bottom: 14mm;
+    border-bottom: 4px solid #0075c2;
+    padding-bottom: 2mm;
+    vertical-align: bottom;
+    line-height: 1;
+    color: #0075c2;
+    font-size: 18q;
+    content: "第" string(chapter) "章｜" string(chapterTitle);
+  }
+  @bottom-left-corner {
+    margin-bottom: 5mm;
+    margin-left: 5mm;
+    vertical-align: bottom;
+    text-align: left;
+    line-height: 1;
+    font-size: 10q;
+    content: counter(page);
+  }
+  @left-top {
+    margin-top: -33mm;
+    margin-right: auto;
+    margin-left: -3mm;
+    width: 63px;
+    height: 782px;
+    content: url(../images/side-index-1-2-2-left.svg);
+  }
+}
+
+@page :right {
+  margin-right: 30mm;
+  margin-left: 20mm;
+
+  @top-right {
+    margin-bottom: 14mm;
+    margin-left: -23mm;
+    border-bottom: 4px solid #0075c2;
+    padding-bottom: 2mm;
+    vertical-align: bottom;
+    line-height: 1;
+    color: #0075c2;
+    font-size: 18q;
+    content: "第" string(chapter) "章｜" string(chapterTitle);
+  }
+  @bottom-right-corner {
+    margin-right: 5mm;
+    margin-bottom: 5mm;
+    vertical-align: bottom;
+    text-align: right;
+    line-height: 1;
+    font-size: 10q;
+    content: counter(page);
+  }
+  @right-top {
+    margin-top: -33mm;
+    margin-right: -3mm;
+    margin-left: auto;
+    width: 63px;
+    height: 782px;
+    content: url(../images/side-index-1-2-2-right.svg);
+  }
+}
+
+#page-content {
+  /*margin: 0;
+  border: none;
+  padding: 0;*/
+}
+
+#page-content::before,
+#page-content::after {
+  content: none;
+}
+
+#page-header,
+#page-footer,
+#page-menu {
+  display: none;
+}
+
+li {
+  break-inside: avoid;
+}
+
+:root {
+  font-family: Hiragino Sans, Yu Gothic, sans-serif;
+  font-size: 14q;
+  line-height: 1.5;
+  text-spacing: auto;
+
+  /* initialize for this sample */
+  counter-reset: h1count;
+  break-before: left;
+  string-set: chapter "2", chapterTitle "必要事項の確認";
+}
+
+@page :first {
+  counter-reset: page 25;
+}
+
+body {
+  font-size: inherit;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+p {
+  margin: 0;
+  line-height: inherit;
+}
+
+.wiki-content {
+  margin-left: 42mm;
+  border-left: 3px solid #0075c2;
+  padding-left: 6.75mm;
+}
+
+.lead {
+  margin-bottom: 1em;
+  color: #0075c2 !important;
+  font-size: 15q;
+}
+
+.page-break {
+  break-before: page;
+}
+
+/*----------------------------------------
+  Headings
+----------------------------------------*/
+
+#page-content h1 {
+  box-sizing: content-box;
+  position: relative;
+  margin-top: -15.1mm;
+  margin-right: -23mm;
+  margin-bottom: 5mm;
+  margin-left: -3mm;
+  border-top: 4px solid #0075c2;
+  border-bottom: 4px solid #0075c2;
+  border-left: 4px solid #0075c2;
+  border-top-left-radius: 3mm;
+  border-bottom-left-radius: 3mm;
+  padding-top: 13mm;
+  padding-right: 23mm;
+  padding-left: 36mm;
+  height: 22mm;
+  font-size: 40q;
+  font-weight: bold;
+  counter-reset: h2count;
+  counter-increment: h1count;
+  break-before: left;
+}
+
+#page-content h1::before {
+  box-sizing: content-box;
+  position: absolute;
+  top: 7mm;
+  left: 0;
+  border-right: 4px solid #0075c2;
+  background: url(../images/section-label.svg) no-repeat !important;
+  width: 30mm;
+  height: 28mm;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 1.2;
+  color: #0075c2 !important;
+  font-size: 230%;
+  font-weight: normal;
+  content: counter(h1count);
+}
+
+#page-content h1 a {
+  color: inherit !important;
+}
+
+#page-content h2 {
+  box-sizing: border-box;
+  position: relative;
+  clear: left;
+  margin-top: 3mm;
+  margin-bottom: 3mm;
+  margin-left: 9mm;
+  outline: 3mm solid white;
+  border: 3q solid;
+  background: white !important;
+  padding-left: 1mm;
+  height: 10mm;
+  line-height: 1.6;
+  color: #0075c2 !important;
+  font-size: 22q;
+  font-weight: normal;
+  counter-reset: h3count;
+  counter-increment: h2count;
+}
+
+#page-content h2::before {
+  box-sizing: border-box;
+  position: absolute;
+  top: -3q;
+  left: -11.5mm;
+  background: #0075c2 !important;
+  width: 10mm;
+  height: 10mm;
+  text-align: center;
+  color: white !important;
+  font-size: 125%;
+  content: counter(h2count);
+}
+
+#page-content h2 {
+  margin-top: 3em;
+}
+
+#page-content h2 ~ h2 {
+  margin-top: 0;
+  break-before: page;
+}
+
+#page-content h3 {
+  clear: left;
+  padding-top: 5mm;
+  margin-bottom: 1mm;
+  margin-left: -2mm;
+  color: #0075c2 !important;
+  font-size: 16q;
+  counter-increment: h3count;
+}
+
+#page-content h3::before {
+  content: "（" counter(h3count) "）";
+  color: black;
+  font-weight: bold;
+}
+
+h4, h5, h6 {
+  padding-top: 1.5em;
+  margin-bottom: 0;
+  font-size: inherit;
+}
+
+h6 {
+  color: #0075c2 !important;
+  font-weight: normal;
+}
+
+/*----------------------------------------
+  Flow-chart-like List
+----------------------------------------*/
+
+ol.flow-steps {
+  padding: 0;
+  counter-reset: list-item;
+}
+ol.flow-steps > li {
+  box-sizing: border-box;
+  position: relative;
+  margin-left: 23mm;
+  border: 2q solid;
+  padding: 1mm 3mm;
+  list-style: none;
+  font-size: 14q;
+  counter-increment: list-item;
+}
+
+ol.flow-steps > li::before {
+  box-sizing: border-box;
+  position: absolute;
+  top: -2q;
+  bottom: -2q;
+  left: -16.5mm;
+  align-items: center;
+  justify-content: center;
+  border: 3q solid #0075c2;
+  background: #EBF7FF !important;
+  padding: 1mm;
+  width: 15mm;
+  text-align: center;
+  font-size: 14q;
+  content: counter(list-item);
+}
+
+ol.flow-steps > li:not(:last-child) {
+  margin-bottom: 7mm;
+}
+
+ol.flow-steps > li:not(:last-child)::after {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: -5.75mm;
+  left: -16.5mm;
+  transform: scaleY(2.2);
+  width: 15mm;
+  text-align: center;
+  line-height: 1;
+  color: #0075c2 !important;
+  font-size: 14q;
+  content: "⬇︎";
+}
+
+/*----------------------------------------
+  Numbered List
+----------------------------------------*/
+
+ol.numbered-list {
+  padding-left: 2em;
+  counter-reset: list-item;
+}
+ol.numbered-list > li {
+  list-style: none;
+  counter-increment: list-item;
+  position: relative;
+}
+ol.numbered-list > li::before {
+  content: counter(list-item);
+  border: 1px solid;
+  border-radius: 50%;
+  box-sizing: border-box;
+  font-size: 85%;
+  height: 1.5em;
+  width: 1.5em;
+  line-height: 1.4;
+  text-align: center;
+  position: absolute;
+  left: -1.6em;
+}
+
+/*----------------------------------------
+  Misc Blocks
+----------------------------------------*/
+
+.note-block {
+  border: 3q solid #0075c2;
+  border-radius: 1em;
+  padding: 12q;
+}
+
+.note-block h6 {
+  font-weight: bold;
+  color: black !important;
+  margin-top: 0;
+  margin-bottom: 2mm;
+}
+
+.note-block h6 img {
+  vertical-align: -0.3em;
+}
+
+.box-points {
+  border: 3q solid #0075c2;
+  border-radius: 1em;
+  padding: 12q;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.box-points h6 {
+  margin-top: 0;
+  margin-bottom: 2mm;
+}
+
+/*----------------------------------------
+  Links
+----------------------------------------*/
+
+a[href] {
+  text-decoration: none;
+  color: #0075c2 !important;
+}
+
+a[href].ref-p::after {
+  border-top-right-radius: 1em;
+  border-bottom-right-radius: 1em;
+  background: #0075c2 !important;
+  padding: 2px 0.75em 2px 2px;
+  white-space: nowrap;
+  color: white !important;
+  font-size: 9q;
+  font-weight: normal;
+  content: " 参照P" target-counter(attr(href url), page) !important;
+}
+
+/*----------------------------------------
+  Side Notes
+----------------------------------------*/
+
+.note-ref-warning {
+  box-sizing: border-box;
+  display: inline-block;
+  margin-left: 1em;
+  border-radius: 2px;
+  background: #4d9ed4 !important;
+  padding: 2px;
+  height: 12px;
+  line-height: 1;
+  color: white !important;
+  font-size: 9px;
+  font-weight: normal;
+}
+
+.note-ref-warning::before {
+  box-sizing: border-box;
+  display: inline-block;
+  margin-top: -5px;
+  margin-bottom: -2px;
+  margin-left: -1em;
+  background-image: url(../images/icon-warning.png) !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  width: 15px;
+  height: 14px;
+  content: "";
+}
+
+.note-warning {
+  float: left;
+  clear: left;
+  margin-bottom: 3mm;
+  margin-left: -49mm;
+  width: 37mm;
+  line-height: 1.4;
+  font-size: 10q;
+}
+
+.note-warning > .note-number {
+  box-sizing: border-box;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 1em;
+  border-radius: 3px;
+  background: #4d9ed4 !important;
+  padding: 2px;
+  height: 13px;
+  line-height: 1;
+  color: white !important;
+  font-size: 10px;
+  font-weight: normal;
+}
+
+.note-warning > .note-number::before {
+  box-sizing: border-box;
+  display: inline-block;
+  margin-top: -13px;
+  margin-bottom: -3px;
+  margin-left: -1em;
+  background-image: url(../images/icon-warning.png) !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  width: 25px;
+  height: 23px;
+  content: "";
+}
+
+.note-warning > ol.note-numbered-list {
+  padding-left: 1.2em;
+  counter-reset: list-item;
+}
+
+.note-warning > ol.note-numbered-list > li {
+  position: relative;
+  list-style: none;
+  counter-increment: list-item;
+}
+
+.note-warning > ol.note-numbered-list > li::before {
+  position: absolute;
+  left: -2em;
+  width: 2em;
+  text-align: end;
+  white-space: pre;
+  content: counter(list-item) ") ";
+}
+
+/*----------------------------------------
+  Tables
+----------------------------------------*/
+
+.confluenceTable {
+  margin-top: 2mm;
+  margin-bottom: 2mm;
+  border: 2px solid #0075c2;
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  line-height: 1.4;
+  font-size: 11q;
+}
+
+.confluenceTable > thead > tr > th,
+.confluenceTable > tbody > tr > th {
+  border: 1px solid #0075c2;
+  background: #cce3f3 !important;
+  padding: 1mm;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 1.4;
+  font-weight: normal;
+}
+
+.confluenceTable > tbody > tr > td {
+  border: 1px solid #0075c2;
+  padding: 1mm;
+  vertical-align: middle;
+  line-height: 1.4;
+}
+
+.confluenceTable > thead > tr > th.corner-empty {
+  border-top: 2px solid transparent;
+  border-right: 2px solid #0075c2;
+  border-bottom: 2px solid #0075c2;
+  border-left: 2px solid transparent;
+  background: transparent !important;
+}
+
+.confluenceTable .center {
+  text-align: center;
+}
+
+.confluenceTable .vertical {
+  display: inline-block;
+  writing-mode: vertical-rl;
+  height: max-content;
+}
+
+.confluenceTable .gray {
+  background: #e6e6e6 !important;
+}

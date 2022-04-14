@@ -1,0 +1,1372 @@
+@charset "utf-8";
+
+/*
+ *
+ * ===== 標準CSS =====
+ *
+ */
+
+
+/* ========================================
+
+
+    �?素�?�リセット
+
+
+   ======================================== */
+
+
+/* --- HTML5 --- */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section,
+summary {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* --- �?素 ---*/
+
+html,
+body,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+blockquote,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+form {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/* ========================================
+
+
+    標準スタイル
+
+
+   ======================================== */
+
+/*
+ * --- 文書全体 ---
+ */
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  font-size: 14px;
+  text-autospace: ideograph-alpha ideograph-numeric ideograph-parenthesis;
+  background-color: #FFFFFF;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+
+/*
+ * --- フォント指定 ---
+ */
+
+body,
+h1, h2, h3, h4, h5,
+input, button, select, textarea {
+  font-family: 'メイリオ', Meiryo, 'ヒラギノ角ゴPro W3', 'Hiragino Kaku Gothic Pro', sans-serif;
+}
+
+
+/*
+ * --- テキスト ---
+ */
+
+p {
+  line-height: 1.6;
+  margin-bottom: 10px;
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+strong,
+dfn,
+b,
+u {
+  text-decoration: none;
+  font-style: italic;
+  font-weight: normal;
+}
+
+em,
+i {
+  text-decoration: none;
+  font-style: italic;
+  font-weight: normal;
+}
+
+strong,
+dfn,
+b {
+  font-weight: bold;
+}
+
+
+strong {
+  color: #F00000;
+}
+
+dfn {
+}
+
+u {
+  border-bottom: 1px dashed #A0A0A0;
+}
+
+
+
+/*
+ * --- 画�? ---
+ */
+
+img {
+}
+
+
+/*
+ * --- 区切り ---
+ */
+
+hr {
+  margin: 20px 0;
+}
+
+
+
+/*
+ * --- リスト ---
+ */
+
+ul {
+  padding-left: 1.1em;
+}
+
+ol {
+  padding-left: 1.6em;
+}
+
+li {
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+dt {
+  font-weight: normal;
+}
+
+
+/*
+ * --- リンク�?ボタン ---
+ */
+
+a,
+button {
+  outline: none !important;
+  text-decoration: none !important;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+
+/*
+ * --- フォーム ---
+ */
+
+input {
+  outline: none;
+  -webkit-appearance: none;
+}
+
+
+
+/* ========================================
+
+
+    フォーム
+
+
+   ======================================== */
+
+/*
+ * --- フォーム ---
+ */
+
+input.form-control,
+textarea.form-control {
+  -webkit-appearance: none;
+}
+
+/* --- IE ×ボタン --- */
+
+input::-ms-clear {
+  display: none;
+}
+
+/* --- テキストエリア --- */
+
+textarea {
+  resize: vertical;
+}
+
+/* --- スピンボタンを�?�表示�?� --- */
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+
+
+/* ========================================
+
+
+    Bootstrap コン�?ー�?ント
+
+
+   ======================================== */
+
+/*
+ * --- フォント ---
+ */
+
+kbd,
+.btn,
+.tooltip,
+.popover {
+  font-family: 'メイリオ', Meiryo, 'ヒラギノ角ゴPro W3', 'Hiragino Kaku Gothic Pro', sans-serif;
+}
+
+
+/*
+ * --- �?素 ---
+ */
+
+kbd {
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: #607D8B;
+  box-shadow: none;
+}
+
+
+
+/*
+ * --- グリッド ---
+ */
+
+.row {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+/* --- 詰�?�?�グリッド --- */
+
+.row-tight > [class^='col-'] {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+
+
+/*
+ * --- ボタン ---
+ */
+
+.btn {
+  box-shadow: 0 2px #D0D0D0;
+  margin-bottom: 2px !important;
+  white-space: normal;
+}
+
+.btn:active {
+  box-shadow: none;
+  margin-top: 2px !important;
+  margin-bottom: 0 !important;
+}
+
+.btn-block {
+  display: inline-block;
+}
+
+.btn:disabled {
+  cursor: default;
+}
+
+.btn-xs {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+
+
+/*
+ * --- ラベル ---
+ */
+
+.label {
+  display: inline-block;
+  font-size: 100%;
+  font-weight: normal;
+  white-space: normal;
+  line-height: 1;
+  padding: 6px 15px 5px 15px;
+  background-color: #A0A0A0;
+  border-radius: 20px;
+}
+
+
+/*
+ * --- ツール�?ップ ---
+ */
+
+.tooltip {
+  z-index: 20;
+}
+
+.tooltip-inner {
+  background-color: #4FC1E9;
+  padding: 5px 10px;
+}
+
+.tooltip.top .tooltip-arrow { border-top-color: #4FC1E9; }
+.tooltip.right .tooltip-arrow { border-right-color: #4FC1E9; }
+.tooltip.left .tooltip-arrow { border-left-color: #4FC1E9; }
+.tooltip.bottom .tooltip-arrow { border-bottom-color: #4FC1E9; }
+
+
+/*
+ * --- ヘルパー ---
+ */
+
+/* --- 表示�?�?�表示 --- */
+
+span.visible-xs {
+  display: inline !important;
+}
+
+
+/* --- 回り込�?� --- */
+
+.pull-clear {
+  clear: both;
+}
+
+
+
+/*
+ * --- �?�刷時�?�調整 ---
+ */
+
+@media print {
+
+  a[href]::after {
+    content: '' !important;
+  }
+
+  abbr[title]::after {
+    content: '' !important;
+  }
+
+}
+
+
+
+
+/* ========================================
+
+
+    汎用コン�?ー�?ント
+
+
+   ======================================== */
+/* ----------------------------------------
+
+    テーブル
+
+   ---------------------------------------- */
+table {
+    background-color: transparent;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+.confluenceTable {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+.confluenceTable > tbody > tr > td, .confluenceTable > tbody > tr > th, .confluenceTable > tfoot > tr > td, .confluenceTable > tfoot > tr > th, .confluenceTable > thead > tr > td, .confluenceTable > thead > tr > th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border: 1px solid #ddd;
+}
+/* ----------------------------------------
+
+    箇�?�書�??
+
+   ---------------------------------------- */
+
+/*
+ * --- 通常�?�箇�?�書�?? ---
+ */
+
+#page-content ol {
+  
+}
+
+#page-content ol li {
+  
+}
+
+#page-content ul {
+  list-style-type: disc;
+}
+
+#page-content ul li {
+  
+}
+
+
+/*
+ * --- 手順を示�?�箇�?�書�?? ---
+ */
+
+ol.option01 {
+    list-style: none;
+    counter-reset: item;
+}
+
+ol.option01 > li {
+    position: relative;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 0.4em;
+}
+
+ol.option01 > li:before {
+    content: counter(item);
+    counter-increment: item;
+    position: absolute;
+    display: inline-block;
+    left: -1.6em;
+    padding: 1px 5px;
+    text-align: center;
+    font-size: 0.8em;
+    color: #FFFFFF;
+    background-color: #606060;
+    border-radius: 5px;
+}
+ol.option02 {
+    list-style: none;
+    counter-reset: item;
+}
+
+ol.option02 > li {
+    position: relative;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 0.4em;
+}
+
+ol.option02 > li:before {
+    content:counter(item) ". " ;
+    counter-increment:item;
+
+    position:absolute;
+    left:-25px;
+    text-align: center;
+    text-decoration: none;
+    margin:1px;
+}
+
+
+/*
+ * --- 手順を示�?�箇�?�書�?? ---
+ */
+#page-content h5.option01 {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 1.5;
+    margin: 10px 0 0 0;
+}
+#page-content h5.option02 {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 10px 0 0 0;
+}
+#page-content h5.option03 {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 10px 0 0 0;
+    text-align: center;
+}
+#page-content h5.option04 {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 10px 0 0 0;
+}
+#page-content h6.option01 {
+    text-align: center;
+}
+#page-content h6.option02 {
+    text-align: center;
+}
+#page-content table h6.option02 {
+    text-align: center;
+    font-size:14px !important;
+    margin: 0;
+    line-height: normal;
+}
+h6.option04 {
+    text-align: right !important;
+    font-size:14px !important;
+    margin: 0;
+    color: #333 !important;
+    font-weight: normal !important;
+    line-height: normal;
+}
+/* ----------------------------------------
+
+    パ�?ル
+
+   ---------------------------------------- */
+
+.wiki-panel-hint,
+.wiki-panel-info,
+.wiki-panel-caution,
+.wiki-panel-warning {
+  margin-bottom: 10px;
+  padding: 15px 15px 15px 40px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+}
+
+.wiki-panel-hint h5,
+.wiki-panel-info h5,
+.wiki-panel-caution h5,
+.wiki-panel-warning h5 {
+  position: relative;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.wiki-panel-hint h5::before,
+.wiki-panel-info h5::before,
+.wiki-panel-caution h5::before,
+.wiki-panel-warning h5::before {
+  position: absolute;
+  left: -1.5em;
+  top: -2px;
+  font-family: 'Glyphicons Halflings';
+  font-size: 17px;
+  font-weight: normal;
+}
+
+.wiki-panel-hint {
+  background-color: #F3F9F4;
+  border-color: #91C89C;
+}
+.wiki-panel-hint h5::before {
+  content: '\e089';
+  color: #32892C;
+}
+
+.wiki-panel-info {
+  background-color: #FCFCFC;
+  border-color: #AAB8C6;
+}
+.wiki-panel-info h5::before {
+  content: '\e086';
+  color: #536785;
+}
+
+.wiki-panel-caution {
+  background-color: #FFFDF6;
+  border-color: #FFEAAE;
+}
+.wiki-panel-caution h5::before {
+  content: '\e107';
+  color: #734300;
+}
+
+.wiki-panel-warning {
+  background-color: #FFF8F7;
+  border-color: #D04437;
+}
+.wiki-panel-warning h5::before {
+  content: '\e101';
+  color: #CF4336;
+}
+
+
+/* ----------------------------------------
+
+    メニューリスト（�?ページ�?��?�リンク）
+
+   ---------------------------------------- */
+
+.childpages-macro {
+
+}
+
+.childpages-macro li {
+  list-style: none;
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+
+.childpages-macro li a {
+}
+
+
+/* ========================================
+
+
+    �??�?��?��?��?�コン�?ー�?ント
+
+
+   ======================================== */
+
+/*
+ * --- アイコン ---
+ */
+
+[class^='ti-'] {
+  vertical-align: -10%;
+}
+
+
+/*
+ * --- アニメーション ---
+ */
+
+.animated-slow {
+  -webkit-animation-duration: 1.4s;
+  -webkit-animation-delay: 0.3s;
+  animation-duration: 1.4s;
+  animation-delay: 0.3s;
+}
+
+.animated-slower {
+  -webkit-animation-duration: 2s;
+  -webkit-animation-delay: 0.5s;
+  animation-duration: 2s;
+  animation-delay: 0.5s;
+}
+
+
+/*
+ * --- カスタムスクロール�?ー ---
+ */
+
+.mCSB_inside > .mCSB_container {
+  margin-right: 15px;
+}
+
+
+/*
+ * --- Webkitスクロール�?ー ---
+ */
+
+.webkit-scroll-vertical::-webkit-scrollbar {
+	width: 6px;
+	background-color: #E9E9E9;
+}
+
+.webkit-scroll-vertical::-webkit-scrollbar-thumb {
+  background-color: #B0B0B0;
+  border-radius: 6px;
+}
+
+
+
+/* ========================================
+
+
+    ページレイアウト
+
+
+   ======================================== */
+
+
+/* ----------------------------------------
+
+    全体
+
+   ---------------------------------------- */
+
+body:not(.animation-ready) * {
+  transition: none !important;
+}
+
+/* ----------------------------------------
+
+    メニュー
+
+   ---------------------------------------- */
+
+/* --- XSサイズ --- */
+@media screen and (min-width: 1px) and (max-width: 767px) {
+  body:not(.animation-ready) #page-menu {
+    display: none;
+  }
+}
+
+
+/* ----------------------------------------
+
+    検索�?果
+
+   ---------------------------------------- */
+
+/* --- 検索�?��?�内容 --- */
+
+#pagetreesearch {}
+#searchForm {}
+
+#searchForm input[type=submit] {
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #FFFFFF;
+  background-color: #42A5F5;
+  border: none;
+  border-radius: 2em;
+}
+
+#searchForm a.aui-button {
+  margin-left: 10px !important;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 2em;
+}
+
+
+/* --- 全体 --- */
+
+body.search div.moduleh1 {
+  padding-top: 20px;
+}
+
+body.search div.moduleh1 .seperatorLine {
+  border: none;
+}
+
+
+/* --- �?果情報 --- */
+
+.moduleh1 h1 {
+  padding: 0;
+  border-bottom: 1px solid #CFD8DC;
+}
+
+.moduleh1 h1 span:first-child {
+  padding: 5px 15px;
+  font-size: 18px;
+  background-color: #CFD8DC;
+}
+
+span.ftitle {
+  margin-left: 15px;
+  font-size: 14px;
+}
+
+span.fcount {
+  margin-left: 3px;
+  font-size: 24px;
+}
+
+.numberOfPageDiv {
+  padding: 0;
+  text-align: right;
+}
+
+#numberOfPage {
+  margin-left: 10px;
+}
+
+/* --- �?果内容 --- */
+
+#resultSearchContainner {
+  margin: 10px 0;
+}
+
+#resultSearchContainner .fpage {
+  margin: 0;
+  padding: 15px 0 10px 10px;
+  border-bottom: 1px solid #E9E9E9;
+}
+
+#resultSearchContainner .fpage h2 {
+  margin-bottom: 10px;
+  text-align: left;
+  font-size: 16px;
+    border-bottom: none;
+}
+
+#resultSearchContainner .fpage .summary {
+  margin-left: 10px;
+  line-height: 1.4;
+  font-size: 13px;
+}
+
+#resultSearchContainner .fpage  ul {
+  list-style-type: none;
+}
+
+/* --- ページ�?ーション --- */
+
+ul.pagenavi {
+  padding-left: 0;
+  padding-top: 10px;
+  text-align: center;
+}
+
+ul.pagenavi li {
+  display: inline-block;
+  padding: 3px 10px;
+  cursor: default;
+}
+
+ul.pagenavi li.sep {
+  display: inline-block;
+  padding: 3px 2px;
+  cursor: default;
+}
+
+ul.pagenavi li[onclick] {
+  font-weight: normal;
+  color: #FFFFFF;
+  background-color: #42A5F5;
+  cursor: pointer;
+}
+
+ul.pagenavi li[onclick]:hover {
+  background-color: #3498E8;
+}
+
+
+ul.pagenavi li:first-child {
+  border-radius: 2em 0 0 2em;
+}
+
+ul.pagenavi li:last-child {
+  border-radius: 0 2em 2em 0;
+}
+
+/* --- エラー --- */
+
+#errorMessage {
+  background-color: #ffebee;
+}
+
+
+/* ----------------------------------------
+
+    メインコンテンツ（.wiki-contentを囲む#page-content）
+
+   ---------------------------------------- */
+
+/*
+ * --- テキスト ---
+ */
+
+#page-content strong {
+  color: #404040;
+}
+
+/*
+ * --- 画�? ---
+ */
+
+#page-content .confluence-embedded-image {
+  width: auto;
+  max-width: 100%;
+}
+
+
+
+
+/* - eof. */
+
+
+
+/* ------------------------------ */
+
+div.wiki-content img
+{
+  max-width:100%;
+  height:auto;
+}
+
+div.wiki-content img.confluence-content-image-border {
+  border: 1px solid black;
+}
+
+/*
+* search
+*/
+#page-content .confluence-embedded-image {
+  width: auto;
+  max-width: 100%;
+}
+
+
+div.searchList{
+  border-bottom:1px dotted #ccc;
+  padding:20px 0;
+}
+div.searchList a{
+  font-weight:bold;
+}
+em.highlight{
+  background: #ffff00;
+  color:#000;
+}
+.list-index00 {
+     counter-reset:item 0 !important;
+}
+
+.list-index01 {
+     counter-reset:item 1 !important;
+}
+
+.list-index02 {
+     counter-reset:item 2 !important;
+}
+
+.list-index03 {
+     counter-reset:item 3 !important;
+}
+
+.list-index04 {
+     counter-reset:item 4 !important;
+}
+
+.list-index05 {
+     counter-reset:item 5 !important;
+}
+
+.list-index06 {
+     counter-reset:item 6 !important;
+}
+
+.list-index07 {
+     counter-reset:item 7 !important;
+}
+
+.list-index08 {
+     counter-reset:item 8 !important;
+}
+
+.list-index09 {
+     counter-reset:item 9 !important;
+}
+
+.list-index10 {
+     counter-reset:item 10 !important;
+}
+
+.list-index11 {
+     counter-reset:item 11 !important;
+}
+
+.list-index12 {
+     counter-reset:item 12 !important;
+}
+
+.list-index13 {
+     counter-reset:item 13 !important;
+}
+
+.list-index14 {
+     counter-reset:item 14 !important;
+}
+
+.list-index15 {
+     counter-reset:item 15 !important;
+}
+
+.list-index16 {
+     counter-reset:item 16 !important;
+}
+
+.list-index17 {
+     counter-reset:item 17 !important;
+}
+
+.list-index18 {
+     counter-reset:item 18 !important;
+}
+
+.list-index19 {
+     counter-reset:item 19 !important;
+}
+
+.list-index20 {
+     counter-reset:item 20 !important;
+}
+
+.list-index21 {
+     counter-reset:item 21 !important;
+}
+
+.list-index22 {
+     counter-reset:item 22 !important;
+}
+
+.list-index23 {
+     counter-reset:item 23 !important;
+}
+
+.list-index24 {
+     counter-reset:item 24 !important;
+}
+
+.list-index25 {
+     counter-reset:item 25 !important;
+}
+
+.list-index26 {
+     counter-reset:item 26 !important;
+}
+
+.list-index27 {
+     counter-reset:item 27 !important;
+}
+
+.list-index28 {
+     counter-reset:item 28 !important;
+}
+
+.list-index29 {
+     counter-reset:item 29 !important;
+}
+
+.list-index30 {
+     counter-reset:item 30 !important;
+}
+
+.list-index31 {
+     counter-reset:item 31 !important;
+}
+
+.list-index32 {
+     counter-reset:item 32 !important;
+}
+
+.list-index33 {
+     counter-reset:item 33 !important;
+}
+
+.list-index34 {
+     counter-reset:item 34 !important;
+}
+
+.list-index35 {
+     counter-reset:item 35 !important;
+}
+
+.list-index36 {
+     counter-reset:item 36 !important;
+}
+
+.list-index37 {
+     counter-reset:item 37 !important;
+}
+
+.list-index38 {
+     counter-reset:item 38 !important;
+}
+
+.list-index39 {
+     counter-reset:item 39 !important;
+}
+
+.list-index40 {
+     counter-reset:item 40 !important;
+}
+
+.list-index41 {
+     counter-reset:item 41 !important;
+}
+
+.list-index42 {
+     counter-reset:item 42 !important;
+}
+
+.list-index43 {
+     counter-reset:item 43 !important;
+}
+
+.list-index44 {
+     counter-reset:item 44 !important;
+}
+
+.list-index45 {
+     counter-reset:item 45 !important;
+}
+
+.list-index46 {
+     counter-reset:item 46 !important;
+}
+
+.list-index47 {
+     counter-reset:item 47 !important;
+}
+
+.list-index48 {
+     counter-reset:item 48 !important;
+}
+
+.list-index49 {
+     counter-reset:item 49 !important;
+}
+
+.list-index50 {
+     counter-reset:item 50 !important;
+}
+
+.list-index51 {
+     counter-reset:item 51 !important;
+}
+
+.list-index52 {
+     counter-reset:item 52 !important;
+}
+
+.list-index53 {
+     counter-reset:item 53 !important;
+}
+
+.list-index54 {
+     counter-reset:item 54 !important;
+}
+
+.list-index55 {
+     counter-reset:item 55 !important;
+}
+
+.list-index56 {
+     counter-reset:item 56 !important;
+}
+
+.list-index57 {
+     counter-reset:item 57 !important;
+}
+
+.list-index58 {
+     counter-reset:item 58 !important;
+}
+
+.list-index59 {
+     counter-reset:item 59 !important;
+}
+
+.list-index60 {
+     counter-reset:item 60 !important;
+}
+
+.list-index61 {
+     counter-reset:item 61 !important;
+}
+
+.list-index62 {
+     counter-reset:item 62 !important;
+}
+
+.list-index63 {
+     counter-reset:item 63 !important;
+}
+
+.list-index64 {
+     counter-reset:item 64 !important;
+}
+
+.list-index65 {
+     counter-reset:item 65 !important;
+}
+
+.list-index66 {
+     counter-reset:item 66 !important;
+}
+
+.list-index67 {
+     counter-reset:item 67 !important;
+}
+
+.list-index68 {
+     counter-reset:item 68 !important;
+}
+
+.list-index69 {
+     counter-reset:item 69 !important;
+}
+
+.list-index70 {
+     counter-reset:item 70 !important;
+}
+
+.list-index71 {
+     counter-reset:item 71 !important;
+}
+
+.list-index72 {
+     counter-reset:item 72 !important;
+}
+
+.list-index73 {
+     counter-reset:item 73 !important;
+}
+
+.list-index74 {
+     counter-reset:item 74 !important;
+}
+
+.list-index75 {
+     counter-reset:item 75 !important;
+}
+
+.list-index76 {
+     counter-reset:item 76 !important;
+}
+
+.list-index77 {
+     counter-reset:item 77 !important;
+}
+
+.list-index78 {
+     counter-reset:item 78 !important;
+}
+
+.list-index79 {
+     counter-reset:item 79 !important;
+}
+
+.list-index80 {
+     counter-reset:item 80 !important;
+}
+
+.list-index81 {
+     counter-reset:item 81 !important;
+}
+
+.list-index82 {
+     counter-reset:item 82 !important;
+}
+
+.list-index83 {
+     counter-reset:item 83 !important;
+}
+
+.list-index84 {
+     counter-reset:item 84 !important;
+}
+
+.list-index85 {
+     counter-reset:item 85 !important;
+}
+
+.list-index86 {
+     counter-reset:item 86 !important;
+}
+
+.list-index87 {
+     counter-reset:item 87 !important;
+}
+
+.list-index88 {
+     counter-reset:item 88 !important;
+}
+
+.list-index89 {
+     counter-reset:item 89 !important;
+}
+
+.list-index90 {
+     counter-reset:item 90 !important;
+}
+
+.list-index91 {
+     counter-reset:item 91 !important;
+}
+
+.list-index92 {
+     counter-reset:item 92 !important;
+}
+
+.list-index93 {
+     counter-reset:item 93 !important;
+}
+
+.list-index94 {
+     counter-reset:item 94 !important;
+}
+
+.list-index95 {
+     counter-reset:item 95 !important;
+}
+
+.list-index96 {
+     counter-reset:item 96 !important;
+}
+
+.list-index97 {
+     counter-reset:item 97 !important;
+}
+
+.list-index98 {
+     counter-reset:item 98 !important;
+}
+
+.list-index99 {
+     counter-reset:item 99 !important;
+}
+
+
